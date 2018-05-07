@@ -1,14 +1,16 @@
-FROM alpine:latest
+FROM ubuntu:16.04
 
-RUN apk update \
-    && apk add squid apache2-utils \
-    && rm -rf /var/cache/apk/*
+RUN mkdir /proxy
+WORKDIR /proxy
 
-COPY squid.conf /etc/squid/squid.conf
+RUN apt-get -qy update \
+   && apt-get -qy upgrade \
+   && apt-get -qy install apache2-utils squid3
 
-RUN mkdir /usr/etc
+COPY ./squid.conf /etc/squid
+COPY ./init .
 
-EXPOSE 3128
+RUN chmod +x init
 
-ADD init /init
-CMD ["/init"]
+RUN touch /etc/squid/squid_passwd
+CMD ["/proxy/init"]
