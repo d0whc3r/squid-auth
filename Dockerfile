@@ -13,4 +13,5 @@ COPY ./init .
 RUN chmod +x init
 
 RUN touch /etc/squid/squid_passwd
+EXPOSE 3128
 CMD ["/proxy/init"]
