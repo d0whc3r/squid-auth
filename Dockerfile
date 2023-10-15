@@ -1,4 +1,4 @@
-FROM ubuntu:16.10
+FROM ubuntu:yakkety-20170704
 
 RUN mkdir /proxy
 WORKDIR /proxy
