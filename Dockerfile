@@ -1,4 +1,4 @@
-FROM ubuntu:16.10
+FROM ubuntu:24.04
 
 RUN mkdir /proxy
 WORKDIR /proxy
